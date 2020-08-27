@@ -2,9 +2,9 @@
 
 This repository has been built to demonstrate the monitoring capabilities of Prometheus / Grafana on OpenShift.
 
-Comprehensive details can be found in the documentation on Confluence - [https://confluence.capgroup.com/pages/viewpage.action?spaceKey=CNTEN&title=Monitoring+Stack+PoC](Monitoring Stack PoC)
+Comprehensive details can be found in the documentation on Confluence - [Monitoring Stack PoC](https://confluence.capgroup.com/pages/viewpage.action?spaceKey=CNTEN&title=Monitoring+Stack+PoC)
 
-Also useful is the official monitoring documentation for OpenShift 4.5, found here - [https://access.redhat.com/documentation/en-us/openshift_container_platform/4.5/html/monitoring/index](Monitoring on OpenShift 4.5)
+Also useful is the official monitoring documentation for OpenShift 4.5, found here - [Monitoring on OpenShift 4.5](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.5/html/monitoring/index)
 
 To run the demo, log into an OpenShift cluster using the OpenShift CLI, and navigate to the desired namespace.  Note that this namespace should match the namespace listed in the .yaml files.  By default, it is set to "consyss-poc"
 

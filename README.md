@@ -8,15 +8,15 @@ Also useful is the official monitoring documentation for OpenShift 4.5, found he
 
 To run the demo, log into an OpenShift cluster using the OpenShift CLI, and navigate to the desired namespace.  Note that this namespace should match the namespace listed in the .yaml files.  By default, it is set to "consyss-poc"
 
-$ oc login
+`$ oc login`
 
-$ oc project consyss-poc
+`$ oc project consyss-poc`
 
 Run the following command to deploy the sample application:
 
-$ oc apply -f prometheus-example-app.yaml
+`$ oc apply -f prometheus-example-app.yaml`
 
 The example app deploys a simple service that exposes a "version" metric.  This metric should be seen by the cluster monitoring operator automatically, and requires zero configuration for querying with Prometheus as an administrator.  To view this metric as a developer, a ServiceMonitor object must be deployed.  The ServiceMonitor points Prometheus to any metrics exposed by the specified application to be shown to any developer with the correct permissions.  Run the following to deploy the ServiceMonitor:
 
-$ oc apply -f example-app-service-monitor.yaml
+`$ oc apply -f example-app-service-monitor.yaml`
 

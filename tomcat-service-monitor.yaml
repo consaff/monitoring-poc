@@ -2,14 +2,14 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    k8s-app: prometheus-example-monitor
-  name: prometheus-example-monitor
+    k8s-app: tomcat-service-monitor
+  name: tomcat-service-monitor
   namespace: consyss-poc
 spec:
   endpoints:
   - interval: 30s
-    port: web
+    port: port-4
     scheme: http
   selector:
     matchLabels:
-      app: prometheus-example-app
+      app: tomcat-agent

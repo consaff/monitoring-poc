@@ -7,6 +7,7 @@ More information on Openshift monitoring can be found [here](https://confluence.
 To run the demo:
 
 $ oc apply -k tomcat-demo
+
 $ oc start-build tomcat-demo --from-dir tomcat-demo --follow
 
 Note that the demo is hardcoded for the namespace "consaff-tomcat-demo"

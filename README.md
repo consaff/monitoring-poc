@@ -12,7 +12,10 @@ $ oc start-build tomcat-demo --from-dir tomcat-demo --follow -n NAMESPACE
 
 Replace "NAMESPACE" with the namespace the app will be deployed on.  By default, this is set to "consaff-tomcat-demo"
 
-To change, replace the value of the "name" field in /tomcat-demo/namespace-tomcat-demo.yaml, and replace the value of the "namespace" field in /tomcat-demo/kustomization.yaml
+To change, replace the following values:
+- "name" field in /tomcat-demo/namespace-tomcat-demo.yaml
+- "namespace" field in /tomcat-demo/kustomization.yaml
+- "image" field in /tomcat-demo/dc-tomcat-demo.yaml (only replace "consaff-tomcat-demo" with the desired namespace)
 
 To cleanup, run:
 ```

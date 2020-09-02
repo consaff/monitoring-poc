@@ -7,6 +7,9 @@ More information on Openshift monitoring can be found [here](https://confluence.
 To run the demo:
 ```
 $ oc apply -k tomcat-demo
-$ oc start-build tomcat-demo --from-dir tomcat-demo --follow
+$ oc start-build tomcat-demo --from-dir tomcat-demo --follow -n NAMESPACE
 ```
-Note that the demo is hardcoded for the namespace "consaff-tomcat-demo"
+
+Replace "NAMESPACE" with the namespace the app will be deployed on.  By default, this is set to "consaff-tomcat-demo"
+
+To change, replace the value of the "name" field in /tomcat-demo/namespace-tomcat-demo.yaml, and replace the value of the "namespace" field in /tomcat-demo/kustomization.yaml

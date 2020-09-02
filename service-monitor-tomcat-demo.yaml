@@ -2,14 +2,14 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    k8s-app: tomcat-service-monitor
-  name: tomcat-service-monitor
-  namespace: consyss-poc
+    k8s-app: tomcat-demo
+  name: tomcat-demo
+  namespace: consaff-tomcat-demo
 spec:
   endpoints:
   - interval: 30s
-    port: port-4
+    port: tomcat-demo
     scheme: http
   selector:
     matchLabels:
-      app: tomcat-agent
+      app: tomcat-demo

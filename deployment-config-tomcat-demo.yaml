@@ -1,0 +1,69 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: tomcat-demo
+  name: tomcat-demo
+  namespace: consaff-tomcat-demo
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: tomcat-demo
+    deploymentconfig: tomcat-demo
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "8088"
+        prometheus.io/scrape: "true"
+      labels:
+        app: tomcat-demo
+        deploymentconfig: tomcat-demo
+    spec:
+      containers:
+      - env:
+        - name: JAVA_AGENT_PORT
+          value: "8088"
+        image: image-registry.openshift-image-registry.svc:5000/consaff-tomcat-demo/tomcat-demo@sha256:f2d03d6e4fb25e0785a56959bf898054da5d222506cacd7c58e4a3cd1f65ab90
+        imagePullPolicy: Always
+        name: tomcat-demo
+        ports:
+        - containerPort: 8778
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8088
+          name: agent
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - tomcat-demo
+      from:
+        kind: ImageStreamTag
+        name: tomcat-demo:latest
+        namespace: consaff-tomcat-demo
+    type: ImageChange

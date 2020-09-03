@@ -16,7 +16,7 @@ To change, replace the following values:
 - "name" field in /tomcat-demo/namespace-tomcat-demo.yaml
 - "namespace" field in /tomcat-demo/kustomization.yaml
 - "image" field in /tomcat-demo/dc-tomcat-demo.yaml (only replace "consaff-tomcat-demo" with the desired namespace)
-
+- the second "namespace" field in /tomcat-demo/dc-tomcat-demo.yaml (two lines from the bottom of the file)
 To cleanup, run:
 ```
 $ oc delete project NAMESPACE

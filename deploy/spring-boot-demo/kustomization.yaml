@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: {REPLACE_WITH_NAMESPACE}
+resources:
+- namespace.yaml
+- spring-boot-demo-bc.yaml
+- spring-boot-demo-dc.yaml
+- spring-boot-demo-svc.yaml
+- spring-boot-demo-is-openjdk.yaml
+- spring-boot-demo-is-spring.yaml
+- spring-boot-demo-route.yaml
+- spring-boot-demo-servicemonitor.yaml

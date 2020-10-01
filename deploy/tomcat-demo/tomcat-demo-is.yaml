@@ -1,0 +1,10 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    build: tomcat-demo
+  name: tomcat-demo
+  namespace: consaff-tomcat-demo
+spec:
+  lookupPolicy:
+    local: false

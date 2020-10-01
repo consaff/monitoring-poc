@@ -1,0 +1,39 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: spring-boot-demo
+  name: spring-boot-demo
+spec:
+  replicas: 1
+  selector:
+    app: spring-boot-demo
+    deploymentconfig: spring-boot-demo
+  template:
+    metadata:
+      labels:
+        app: spring-boot-demo
+        deploymentconfig: spring-boot-demo
+    spec:
+      containers:
+      - image: spring-boot-demo:latest
+        imagePullPolicy: Always
+        name: spring-boot-demo
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - spring-boot-demo
+      from:
+        kind: ImageStreamTag
+        name: spring-boot-demo:latest
+    type: ImageChange

@@ -1,0 +1,46 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: tomcat-demo
+  name: tomcat-demo
+spec:
+  replicas: 1
+  selector:
+    app: tomcat-demo
+    deploymentconfig: tomcat-demo
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+        prometheus.io/endpoint: "/metrics/"
+      labels:
+        app: tomcat-demo
+        deploymentconfig: tomcat-demo
+    spec:
+      containers:
+      - env:
+        - name: JAVA_AGENT_PORT
+          value: "8088"
+        image: ''
+        name: tomcat-demo
+        ports:
+        - containerPort: 8778
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8088
+          protocol: TCP
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - tomcat-demo
+      from:
+        kind: ImageStreamTag
+        name: tomcat-demo:latest
+    type: ImageChange

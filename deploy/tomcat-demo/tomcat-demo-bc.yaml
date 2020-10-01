@@ -1,0 +1,17 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    build: tomcat-demo
+  name: tomcat-demo
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: tomcat-demo:latest
+  source:
+    binary: {}
+    type: Binary
+  strategy:
+    dockerStrategy: {}
+    type: Docker

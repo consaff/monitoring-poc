@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: tomcat-demo
+  name: tomcat-demo
+spec:
+  port:
+    targetPort: tomcat-demo
+  to:
+    kind: Service
+    name: tomcat-demo

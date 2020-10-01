@@ -1,0 +1,30 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: spring-boot-demo
+  name: spring-boot-demo
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: spring-boot-demo:latest
+  source:
+    contextDir: demo-docker
+    git:
+      uri: https://github.com/consaff/masterspringboot.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: openjdk18-openshift:latest
+    type: Source
+  triggers:
+  - github:
+      secret: lPuYuSvEfSCYJ2vuOTcV
+    type: GitHub
+  - generic:
+      secret: jLhmVUjb4soCpRxQ8d34
+    type: Generic

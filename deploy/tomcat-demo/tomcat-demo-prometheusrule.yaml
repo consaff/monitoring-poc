@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: tomcat-demo
+spec:
+  groups:
+  - name: tomcat-demo
+    rules:
+    - alert: TomcatDemoAlert
+      expr: tomcat_info == 1
+      labels:
+        severity: None

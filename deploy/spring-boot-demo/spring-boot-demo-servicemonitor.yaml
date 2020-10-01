@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: spring-boot-demo
+  name: spring-boot-demo
+spec:
+  endpoints:
+  - interval: 30s
+    port: spring-boot-demo
+    scheme: http
+  selector:
+    matchLabels:
+      app: spring-boot-demo

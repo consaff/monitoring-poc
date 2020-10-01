@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: tomcat-demo
+  name: tomcat-demo
+spec:
+  ports:
+  - name: port-1
+    port: 8778
+    protocol: TCP
+    targetPort: 8778
+  - name: tomcat-demo
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: port-2
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: port-3
+    port: 8088
+    protocol: TCP
+    targetPort: 8088
+  selector:
+    app: tomcat-demo
+    deploymentconfig: tomcat-demo
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
